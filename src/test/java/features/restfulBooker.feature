@@ -5,7 +5,7 @@ Scenario Outline: Verify if token is successfully created using CreateToken API
 Given CreateTokenAPI payload with "<username>" "<password>"
 When  User calls "CreateToken" API with "POST" http request
 Then  The API call is success with status code 200 and response time less than 3000L
-And   User gets token in the response body
+And "token" is successfully created
 Examples:
 |username|password|
 |admin   |password123|
@@ -16,7 +16,7 @@ Scenario: Verify if booking is successfully created using CreateBooking API
 Given "CreateBooking"API payload
 When User calls "CreateBooking" API with "POST" http request
 Then The API call is success with status code 200 and response time less than 3000L
-And bookingid is successfully created
+And "bookingid" is successfully created
 
 
 @GetBooking
@@ -42,6 +42,3 @@ Given The BookingID and Access token
 When User calls "DeleteBooking" API with "DELETE" http request
 Then The API call is success with status code 201 and response time less than 3000L
 And  verify data is deleted successfully using GetBooking API
-
- 
-
