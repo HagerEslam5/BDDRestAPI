@@ -69,16 +69,14 @@ public class MainSteps extends AbstractComponents {
 		Assert.assertTrue(resBody.getTime() < 3000);
 	}
 
-	@Then("User gets token in the response body")
-	public void user_get_token_in_the_response_body() {
-		JsonPath js = convResponseToJson(resBody.asString());
-		token = js.getString("token");
-	}
 
-	@Then("bookingid is successfully created")
-	public void bookingid_is_successfully_created() {
+	@Then("{string} is successfully created")
+	public void is_successfully_created(String string) {
 		JsonPath js = convResponseToJson(resBody.asString());
+		if (string.equalsIgnoreCase("bookingid"))
 		bookingID = js.getString("bookingid");
+		else if  (string.equalsIgnoreCase("token"))
+		token = js.getString("token");
 	}
 
 	@Then("{string} in the response body is equal to the previously added value")
