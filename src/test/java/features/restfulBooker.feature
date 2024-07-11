@@ -24,8 +24,7 @@ Scenario: Verify if specific bookingID data is successfully exists using GetBook
 Given The BookingID and Access token
 When User calls "GetBooking" API with "GET" http request
 Then The API call is success with status code 200 and response time less than 3000L
-And "firstname" in the response body is equal to the previously added value
-And "lastname" in the response body is equal to the previously added value
+And The data in the response body is the same as the previously added data
 
 
 @PartialUpdateBooking
