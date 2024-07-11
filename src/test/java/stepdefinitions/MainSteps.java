@@ -95,6 +95,11 @@ public class MainSteps extends AbstractComponents {
 
 		Assert.assertEquals(js.getString("firstname"), POJORes.getFirstname());
 		Assert.assertEquals(js.getString("lastname"), POJORes.getLastname());
+		Assert.assertEquals(js.getString("totalprice"), POJORes.getTotalprice());
+		Assert.assertEquals(js.getBoolean("depositpaid"), POJORes.getDepositpaid());
+		Assert.assertEquals(js.getString("additionalneeds"), POJORes.getAdditionalneeds());
+		Assert.assertEquals(js.getString("bookingdates.checkin"), POJORes.getBookingdates().getCheckin());
+		Assert.assertEquals(js.getString("bookingdates.checkout"), POJORes.getBookingdates().getCheckout());
 	}
 
 	@Then("data is updated successfully")
