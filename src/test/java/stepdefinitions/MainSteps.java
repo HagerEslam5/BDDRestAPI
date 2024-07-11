@@ -39,14 +39,14 @@ public class MainSteps extends AbstractComponents {
 		if (api.equalsIgnoreCase("CreateBooking"))
 			request = given().spec(reqSpec).body(Booking);
 		else if (api.equalsIgnoreCase("PartialUpdateBooking"))
-			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token + "")
+			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token)
 					.header("Accept", "application/json").body(TestData.UpdateDataPartially(fName, lName));
 	}
 
 	@Given("The BookingID and Access token")
 	public void booking_id() throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token + "");
+		request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token);
 
 	}
 
