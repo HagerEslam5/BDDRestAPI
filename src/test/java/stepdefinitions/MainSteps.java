@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.testng.Assert;
 
 import POJO.Booking;
+import POJO.BookingDate;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -36,9 +37,18 @@ public class MainSteps extends AbstractComponents {
 	@Given("{string}API payload")
 	public void payload(String api) throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		if (api.equalsIgnoreCase("CreateBooking"))
+		if (api.equalsIgnoreCase("CreateBooking")) {
+			Booking.setFirstname("Jim");
+			Booking.setLastname("Brown");
+			Booking.setTotalprice("111");
+			Booking.setDepositpaid(true);
+			Booking.setAdditionalneeds("Breakfast");
+			BookingDate BookingDate = new BookingDate();
+			BookingDate.setCheckin("2018-01-01");
+			BookingDate.setCheckout("2019-01-01");
+			Booking.setBookingdates(BookingDate);
 			request = given().spec(reqSpec).body(Booking);
-		else if (api.equalsIgnoreCase("PartialUpdateBooking"))
+		} else if (api.equalsIgnoreCase("PartialUpdateBooking"))
 			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token)
 					.header("Accept", "application/json").body(TestData.UpdateDataPartially(fName, lName));
 	}
@@ -85,7 +95,6 @@ public class MainSteps extends AbstractComponents {
 
 		Assert.assertEquals(js.getString("firstname"), POJORes.getFirstname());
 		Assert.assertEquals(js.getString("lastname"), POJORes.getLastname());
-
 	}
 
 	@Then("data is updated successfully")
