@@ -88,8 +88,8 @@ public class MainSteps extends AbstractComponents {
 			token = js.getString("token");
 	}
 
-	@Then("{string} in the response body is equal to the previously added value")
-	public void in_the_response_body_is_equal_to_the_previously_added_value(String string) {
+	@Then("The data in the response body is the same as the previously added data")
+	public void in_the_response_body_is_equal_to_the_previously_added_value() {
 		POJO.Booking POJORes = resBody.then().extract().as(Booking.class);
 		JsonPath js = convResponseToJson(resBody.asString());
 
@@ -100,6 +100,7 @@ public class MainSteps extends AbstractComponents {
 		Assert.assertEquals(js.getString("additionalneeds"), POJORes.getAdditionalneeds());
 		Assert.assertEquals(js.getString("bookingdates.checkin"), POJORes.getBookingdates().getCheckin());
 		Assert.assertEquals(js.getString("bookingdates.checkout"), POJORes.getBookingdates().getCheckout());
+		
 	}
 
 	@Then("data is updated successfully")
