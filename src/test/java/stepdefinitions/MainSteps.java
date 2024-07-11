@@ -69,21 +69,22 @@ public class MainSteps extends AbstractComponents {
 		Assert.assertTrue(resBody.getTime() < 3000);
 	}
 
-
 	@Then("{string} is successfully created")
 	public void is_successfully_created(String string) {
 		JsonPath js = convResponseToJson(resBody.asString());
 		if (string.equalsIgnoreCase("bookingid"))
-		bookingID = js.getString("bookingid");
-		else if  (string.equalsIgnoreCase("token"))
-		token = js.getString("token");
+			bookingID = js.getString("bookingid");
+		else if (string.equalsIgnoreCase("token"))
+			token = js.getString("token");
 	}
 
 	@Then("{string} in the response body is equal to the previously added value")
 	public void in_the_response_body_is_equal_to_the_previously_added_value(String string) {
+		POJO.Booking POJORes = resBody.then().extract().as(Booking.class);
 		JsonPath js = convResponseToJson(resBody.asString());
-		Assert.assertEquals(js.getString("firstname"), Booking.getFirstname());
-		Assert.assertEquals(js.getString("lastname"), Booking.getLastname());
+
+		Assert.assertEquals(js.getString("firstname"), POJORes.getFirstname());
+		Assert.assertEquals(js.getString("lastname"), POJORes.getLastname());
 
 	}
 
