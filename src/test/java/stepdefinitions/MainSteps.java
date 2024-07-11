@@ -20,7 +20,6 @@ import utilities.*;
 
 public class MainSteps extends AbstractComponents {
 	TestData TestData = new TestData();
-	Booking Booking = new Booking();
 	private RequestSpecification request;
 	private Response resBody;
 	private static String token;
@@ -38,6 +37,7 @@ public class MainSteps extends AbstractComponents {
 	public void payload(String api) throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
 		if (api.equalsIgnoreCase("CreateBooking")) {
+			Booking Booking = new Booking();
 			Booking.setFirstname("Jim");
 			Booking.setLastname("Brown");
 			Booking.setTotalprice("111");
