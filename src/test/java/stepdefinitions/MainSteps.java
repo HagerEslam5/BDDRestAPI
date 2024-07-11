@@ -28,9 +28,9 @@ public class MainSteps extends AbstractComponents {
 	private String lName = "Scott";
 
 	@Given("CreateTokenAPI payload with {string} {string}")
-	public void create_token_payload_with(String username, String admin) throws IOException {
+	public void create_token_payload_with(String username, String password) throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec).body(TestData.createTokenDate(username, admin));
+		request = given().spec(reqSpec).body(TestData.createTokenDate(username, password));
 	}
 
 	@Given("{string}API payload")
