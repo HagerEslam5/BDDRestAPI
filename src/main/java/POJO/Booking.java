@@ -9,17 +9,6 @@ public class Booking {
 	private BookingDate bookingdates;
 	private String additionalneeds;
 
-	public Booking() {
-		this.firstname = "Jim";
-		this.lastname = "Brown";
-		this.totalprice = "111";
-		this.depositpaid = true;
-		this.additionalneeds = "Breakfast";
-		BookingDate BookingDate = new BookingDate();
-		this.bookingdates = BookingDate;
-
-	}
-
 	public String getFirstname() {
 		return firstname;
 	}
