@@ -110,7 +110,7 @@ public class MainSteps extends AbstractComponents {
 		resBody.then().assertThat().body("firstname", equalTo(fName)).assertThat().body("lastname", equalTo(lName));
 	}
 
-	@Then("verify data is deleted successfully using GetBooking API")
+	@Then("Data is deleted successfully")
 	public void data_is_deleted_successfully() {
 		String deleteMess = resBody.then().extract().response().asString();
 		Assert.assertEquals(deleteMess, "Created");
