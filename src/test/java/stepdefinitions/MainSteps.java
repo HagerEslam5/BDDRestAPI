@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.testng.Assert;
 
@@ -26,12 +27,13 @@ public class MainSteps extends AbstractComponents {
 	private static String bookingID;
 	private String fName = "Micheal";
 	private String lName = "Scott";
-
-	@Given("CreateTokenAPI payload with {string} {string}")
-	public void create_token_payload_with(String username, String password) throws IOException {
-		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec).body(TestData.createTokenDate(username, password));
+	
+	@Given("user credentials")
+	public void user_credentials(List<String> data) throws IOException {
+			RequestSpecification reqSpec = buildRequestSpec();
+			request = given().spec(reqSpec).body(TestData.createTokenDate(data.get(0), data.get(1)));
 	}
+
 
 	@Given("{string}API payload")
 	public void payload(String api) throws IOException {
@@ -100,7 +102,7 @@ public class MainSteps extends AbstractComponents {
 		Assert.assertEquals(js.getString("additionalneeds"), POJORes.getAdditionalneeds());
 		Assert.assertEquals(js.getString("bookingdates.checkin"), POJORes.getBookingdates().getCheckin());
 		Assert.assertEquals(js.getString("bookingdates.checkout"), POJORes.getBookingdates().getCheckout());
-		
+
 	}
 
 	@Then("data is updated successfully")
