@@ -1,8 +1,11 @@
+
 Feature: Validating the restfulBooker APIs
 
 @CreateToken
-Scenario Outline: Verify if token is successfully created using CreateToken API
-Given CreateTokenAPI payload with "admin" "password123"
+Scenario: Verify if token is successfully created using CreateToken API
+Given user credentials 
+|admin|
+|password123|
 When  User calls "CreateToken" API with "POST" http request
 Then  The API call is success with status code 200 and response time less than 3000L
 And "token" is successfully created
