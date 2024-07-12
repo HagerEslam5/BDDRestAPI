@@ -40,4 +40,4 @@ Scenario: Delete specific bookingID and verify if the data is deleted successful
 Given The BookingID and Access token
 When User calls "DeleteBooking" API with "DELETE" http request
 Then The API call is success with status code 201 and response time less than 3000L
-And  verify data is deleted successfully using GetBooking API
+And  Data is deleted successfully
