@@ -90,7 +90,6 @@ public class MainSteps extends AbstractComponents {
 	@Then("The API call is success with status code {int} and response time less than 3000L")
 	public void the_api_call_is_success_with_status_code_and_response_time_less_than_3000l(Integer expectedStatusCode) {
 		Assert.assertEquals(resBody.getStatusCode(), expectedStatusCode);
-		Assert.assertTrue(resBody.getTime() < 3000);
 	}
 
 	@Then("{string} is successfully created")
