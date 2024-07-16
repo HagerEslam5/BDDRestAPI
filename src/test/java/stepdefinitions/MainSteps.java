@@ -26,18 +26,15 @@ public class MainSteps extends AbstractComponents {
 	private RequestSpecification request;
 	private Response resBody;
 	private static String token;
-	private static String bookingID;
+	private static int bookingID;
 	private String fName = "Micheal";
 	private String lName = "Scott";
-	
+
 	@Given("user credentials")
 	public void user_credentials(List<String> data) throws IOException {
-			RequestSpecification reqSpec = buildRequestSpec();
-			request = given()
-				.spec(reqSpec)
-				.body(TestData.createTokenDate(data.get(0), data.get(1)));
+		RequestSpecification reqSpec = buildRequestSpec();
+		request = given().spec(reqSpec).body(TestData.createTokenDate(data.get(0), data.get(1)));
 	}
-
 
 	@Given("{string}API payload")
 	public void payload(String api) throws IOException {
@@ -53,25 +50,17 @@ public class MainSteps extends AbstractComponents {
 			BookingDate.setCheckin("2018-01-01");
 			BookingDate.setCheckout("2019-01-01");
 			Booking.setBookingdates(BookingDate);
-			request = given()
-				.spec(reqSpec)
-				.body(Booking);
-		} else if (api.equalsIgnoreCase("PartialUpdateBooking"))
-		{request = given()
-				.spec(reqSpec)
-				.pathParam("bookingID", bookingID)
-				.header("Cookie", "token=" + token)
-				.header("Accept", "application/json")
-				.body(TestData.UpdateDataPartially(fName, lName)); }
+			request = given().spec(reqSpec).body(Booking);
+		} else if (api.equalsIgnoreCase("PartialUpdateBooking")) {
+			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token)
+					.header("Accept", "application/json").body(TestData.UpdateDataPartially(fName, lName));
+		}
 	}
 
 	@Given("The BookingID and Access token")
 	public void booking_id() throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given()
-			.spec(reqSpec)
-			.pathParam("bookingID", bookingID)
-			.header("Cookie", "token=" + token);
+		request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token);
 	}
 
 	@When("User calls {string} API with {string} http request")
@@ -97,7 +86,7 @@ public class MainSteps extends AbstractComponents {
 		JsonPath js = convResponseToJson(resBody.asString());
 		if (string.equalsIgnoreCase("bookingid")) {
 			resBody.then().body("bookingid", is(notNullValue()));
-			bookingID = js.getString("bookingid");
+			bookingID = js.getInt("bookingid");
 		} else if (string.equalsIgnoreCase("token")) {
 			resBody.then().body("token", is(notNullValue()));
 			token = js.getString("token");
