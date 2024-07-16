@@ -31,7 +31,9 @@ public class MainSteps extends AbstractComponents {
 	@Given("user credentials")
 	public void user_credentials(List<String> data) throws IOException {
 			RequestSpecification reqSpec = buildRequestSpec();
-			request = given().spec(reqSpec).body(TestData.createTokenDate(data.get(0), data.get(1)));
+			request = given()
+				.spec(reqSpec)
+				.body(TestData.createTokenDate(data.get(0), data.get(1)));
 	}
 
 
@@ -49,17 +51,25 @@ public class MainSteps extends AbstractComponents {
 			BookingDate.setCheckin("2018-01-01");
 			BookingDate.setCheckout("2019-01-01");
 			Booking.setBookingdates(BookingDate);
-			request = given().spec(reqSpec).body(Booking);
+			request = given()
+				.spec(reqSpec)
+				.body(Booking);
 		} else if (api.equalsIgnoreCase("PartialUpdateBooking"))
-			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token)
-					.header("Accept", "application/json").body(TestData.UpdateDataPartially(fName, lName));
+		{request = given()
+				.spec(reqSpec)
+				.pathParam("bookingID", bookingID)
+				.header("Cookie", "token=" + token)
+				.header("Accept", "application/json")
+				.body(TestData.UpdateDataPartially(fName, lName)); }
 	}
 
 	@Given("The BookingID and Access token")
 	public void booking_id() throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token);
-
+		request = given()
+			.spec(reqSpec)
+			.pathParam("bookingID", bookingID)
+			.header("Cookie", "token=" + token);
 	}
 
 	@When("User calls {string} API with {string} http request")
