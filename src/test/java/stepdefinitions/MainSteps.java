@@ -2,6 +2,8 @@ package stepdefinitions;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 import java.io.IOException;
 import java.util.List;
@@ -94,10 +96,13 @@ public class MainSteps extends AbstractComponents {
 	@Then("{string} is successfully created")
 	public void is_successfully_created(String string) {
 		JsonPath js = convResponseToJson(resBody.asString());
-		if (string.equalsIgnoreCase("bookingid"))
+		if (string.equalsIgnoreCase("bookingid")) {
+			resBody.then().body("bookingid", is(notNullValue()));
 			bookingID = js.getString("bookingid");
-		else if (string.equalsIgnoreCase("token"))
+		} else if (string.equalsIgnoreCase("token")) {
+			resBody.then().body("token", is(notNullValue()));
 			token = js.getString("token");
+		}
 	}
 
 	@Then("The data in the response body is the same as the previously added data")
