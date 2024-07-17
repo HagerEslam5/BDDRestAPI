@@ -24,8 +24,7 @@ Scenario: Verify if specific bookingID data successfully exists using GetBooking
 Given The BookingID and Access token
 When User calls "GetBooking" API with "GET" http request
 Then The API call is successful with status code 200 and response time less than 20000L
-
-And The data in the response body is the same as the previously added data
+And  Data in the response body is the same as the previously added data
 
 
 @PartialUpdateBooking
@@ -33,7 +32,7 @@ Scenario: Update specific bookingID data and verify if the data is updated succe
 Given "PartialUpdateBooking"API payload
 When User calls "PartialUpdateBooking" API with "PATCH" http request
 Then The API call is successful with status code 200 and response time less than 20000L
-And data is updated successfully
+And Data is updated successfully
 
 
 @DeleteBooking
