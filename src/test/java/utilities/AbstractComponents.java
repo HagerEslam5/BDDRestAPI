@@ -26,7 +26,9 @@ public class AbstractComponents {
 			PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
 			reqSpec = new RequestSpecBuilder().setBaseUri(getGlobalData("BaseUrl"))
 					.addFilter(RequestLoggingFilter.logRequestTo(log))
-					.addFilter(ResponseLoggingFilter.logResponseTo(log)).setContentType(ContentType.JSON).build();
+					.addFilter(ResponseLoggingFilter.logResponseTo(log))
+					.addHeader("Content-Type", "application/json")
+					.addHeader("Accept", "application/json").build();
 			return reqSpec;
 		}
 		return reqSpec;
