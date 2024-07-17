@@ -4,13 +4,14 @@ Rest API testing with Cucumber (BDD) Framework
 
 -POJO classes for Serialization and De-Serialization of JSON payload
 
--RequestSpecBuilder to construct request specifications
+-SpecBuilder to construct request and response specifications
 
 -Implemented logging to the framework to log request and response details
 
 -Enum class to centralize all resources details
 
 -Data Driven mechanism to drive data dynamically from feature file
+-Java Faker library to generate test data
 
 -Reports for test execution results.
 
