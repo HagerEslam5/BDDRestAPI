@@ -4,7 +4,7 @@ public class Booking {
 
 	private String firstname;
 	private String lastname;
-	private String totalprice;
+	private int totalprice;
 	private Boolean depositpaid;
 	private BookingDate bookingdates;
 	private String additionalneeds;
@@ -25,11 +25,11 @@ public class Booking {
 		this.lastname = lastname;
 	}
 
-	public String getTotalprice() {
+	public int getTotalprice() {
 		return totalprice;
 	}
 
-	public void setTotalprice(String totalprice) {
+	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
 	}
 
