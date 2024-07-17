@@ -33,8 +33,7 @@ public class MainSteps extends AbstractComponents {
 	@Given("user credentials")
 	public void user_credentials(List<String> data) throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec)
-			.body(TestData.createTokenDate(data.get(0), data.get(1)));
+		request = given().spec(reqSpec).body(TestData.createTokenDate(data.get(0), data.get(1)));
 	}
 
 	@Given("{string}API payload")
@@ -53,20 +52,15 @@ public class MainSteps extends AbstractComponents {
 			Booking.setBookingdates(BookingDate);
 			request = given().spec(reqSpec).body(Booking);
 		} else if (api.equalsIgnoreCase("PartialUpdateBooking")) {
-			request = given().spec(reqSpec)
-				.pathParam("bookingID", bookingID)
-				.header("Cookie", "token=" + token)
-				.header("Accept", "application/json")
-				.body(TestData.UpdateDataPartially(fName, lName));
+			request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token)
+					.body(TestData.UpdateDataPartially(fName, lName));
 		}
 	}
 
 	@Given("The BookingID and Access token")
 	public void booking_id() throws IOException {
 		RequestSpecification reqSpec = buildRequestSpec();
-		request = given().spec(reqSpec)
-			.pathParam("bookingID", bookingID)
-			.header("Cookie", "token=" + token);
+		request = given().spec(reqSpec).pathParam("bookingID", bookingID).header("Cookie", "token=" + token);
 	}
 
 	@When("User calls {string} API with {string} http request")
@@ -124,9 +118,8 @@ public class MainSteps extends AbstractComponents {
 		String deleteMess = resBody.then().extract().response().asString();
 		Assert.assertEquals(deleteMess, "Created");
 		APIResources resourceAPI = APIResources.valueOf("GetBooking");
-		String getMess = request.when().get(resourceAPI.getResource())
-			.then().statusCode(404)
-			.extract().response().asString();
+		String getMess = request.when().get(resourceAPI.getResource()).then().statusCode(404).extract().response()
+				.asString();
 		Assert.assertEquals(getMess, "Not Found");
 	}
 
